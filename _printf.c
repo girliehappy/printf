@@ -8,39 +8,41 @@
  */
 int _printf(const char *format, ...)
 {
-        unsigned h = 0, r_value = 0;
-        va_list args;
-        va_start(args, format);
-	
+	unsigned int t = 0, ret_value = 0;
+	va_list args;
+
+	va_start(args, format);
+
 	if (!format || (format[0] == '%' && !format[1]))
 		return (-1);
 
 	if (format[0] == '%' && format[1] == ' ' && !format[2])
 		return (-1);
 
-        for (; format[h] != '\0'; h++)
-        {
-                if (format[h] != '%')
-                {
-                        _putchar(format[h]);
-                }
-                else if (format[h + 1] == 'c')
-                {
-                        _putchar(va_arg(args, int));
-                        h++;
-                }
-                else if (format[h + 1] == 's')
-                {
-                        int r_val = _puts(va_arg(args, char *));
-                        h++;
-                        r_value += (r_val - 1);
-                }
-                else if (format[h + 1] == '%')
+	for (; format[t] != '\0'; t++)
+	{
+		if (format[t] != '%')
 		{
-                        _putchar('%');
-                        h++;
+			_putchar(format[t]);
 		}
-                r_value += 1;
-        }
-        return (r_value);
+		else if (format[t + 1] == 'c')
+		{
+			_putchar(va_arg(args, int));
+			t++;
+		}
+		else if (format[t + 1] == 's')
+		{
+			int r_value = _puts(va_arg(args, char *));
+
+			h++;
+			ret_value += (r_value - 1);
+		}
+		else if (format[t + 1] == '%')
+		{
+			_putchar('%');
+			t++;
+		}
+		ret_value += 1;
+	}
+	return (ret_value);
 }
