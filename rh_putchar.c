@@ -5,7 +5,7 @@
  * @c: This is the character to be printed
  * Return: 1 (Success), -1 if error
  */
-int rh_putchar(char c)
+int _putchar(char c)
 {
 	write(1, &c, 1);
 	return(1);

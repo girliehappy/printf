@@ -1,10 +1,11 @@
-#ifndef _MAIN_H_
-#define _MAIN_H_
+#ifndef MAIN_H
+#define MAIN_H
 
+#include <stdarg.h>
+#include <stdio.h>
+
+int _puts(char *string);
 int _printf(const char *format, ...);
-int rh_putchar (char c);
-int print_char(const char *s, va_list arg);
-int print_str(char *string);
-int print_per(char *format, va_list percentage);
+int _putchar (char c);
 
 #endif

@@ -1,24 +1,40 @@
-#include <unistd.h>
 #include "main.h"
 
 /**
- * _printf - a function that behaves like printf
- * @format: a char to be printed
- * @...: other variable arguement
- *
- * Return: Always 0 (success)
+ * _printf - A function that print values passed to it
+ * @format: Value to print
+ * @...: Other variable arguments
+ * Return: Always 0
  */
-
 int _printf(const char *format, ...)
 {
-	int r;
-	r = 0;
+        unsigned h = 0, r_value = 0;
+        va_list args;
+        va_start(args, format);
 
-	while (format[r])
-	{
-		write(1, &format[r], 1);
-		r++;
-	}
-
-	return (0);
+        for (; format[h] != '\0'; h++)
+        {
+                if (format[h] != '%')
+                {
+                        _putchar(format[h]);
+			h++;
+                }
+                else if (format[h + 1] == 'c')
+                {
+                        _putchar(va_arg(args, int));
+                        h++;
+                }
+                else if (format[h + 1] == 's')
+                {
+                        int r_val = _puts(va_arg(args, char *));
+                        h++;
+                        r_value += (r_val - 1);
+                }
+                else if (format[h + 1] == '%')
+                        _putchar('%');
+                        h++;
+               
+                r_value += 1;
+        }
+        return (r_value);
 }
