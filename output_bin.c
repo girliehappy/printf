@@ -4,34 +4,34 @@
 
 /**
 * output_bin - conversion of unsigned int argument to binary
-* @b: number in decinal
-* Return: number of chars printed
+* @c: the number in decimal
+* Return: num of chars printed
 */
-int print_bin(va_list b)
+int output_bin(va_list c)
 {
-	unsigned int len, powten, j, digit, n, num;
+	unsigned int l, p, t, figure, x, num;
 	int count = 0;
 
-	n = va_arg(b, unsigned int);
-	if (n != 0)
+	x = va_arg(c, unsigned int);
+	if (x != 0)
 	{
-		num = n;
-		len = 0;
+		num = x;
+		l = 0;
 		while (num != 0)
 		{
 			num /= 2;
-			len++;
+			l++;
 		}
-		powten = 1;
-		for (j = 1; j <= len - 1; j++)
-			powten *= 2;
-		for (j = 1; j <= len; j++)
+		p = 1;
+		for (t = 1; t <= l - 1; t++)
+			p *= 2;
+		for (t = 1; t <= l; t++)
 		{
-			digit = n / powten;
-			_putchar(digit + '0');
+		figure = x / p;
+			_putchar(figure + '0');
 			count++;
-			n -= digit * powten;
-			powten /= 2;
+			x -=figure * p;
+			p /= 2;
 		}
 	}
 	else
