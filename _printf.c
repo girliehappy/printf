@@ -47,6 +47,11 @@ int _printf(const char *format, ...)
 			output_int((va_arg(args, int) + '0'));
 			t++;
 		}
+		else if (format[t + 1] != 'b')
+		{
+			output_bin((va_arg(args,int) + '0'));
+			t++;
+		}
 
 		ret_value += 1;
 	}

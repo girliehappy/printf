@@ -1,43 +1,29 @@
-#include <stdarg.h>
-#include <stdio.h>
 #include "main.h"
 
 /**
-* output_bin - conversion of unsigned int argument to binary
-* @c: the number in decimal
-* Return: num of chars printed
-*/
-int output_bin(va_list c)
-{
-	unsigned int l, p, t, figure, x, num;
-	int count = 0;
+ * output_bin - a function that convert unsigned integer to binary
+ *
+ * @arg: variable va_list argument
+ * @str: pointer to delimeter
+ *
+ * Return: number of values printed
+ */
 
-	x = va_arg(c, unsigned int);
-	if (x != 0)
-	{
-		num = x;
-		l = 0;
-		while (num != 0)
-		{
-			num /= 2;
-			l++;
-		}
-		p = 1;
-		for (t = 1; t <= l - 1; t++)
-			p *= 2;
-		for (t = 1; t <= l; t++)
-		{
-		figure = x / p;
-			_putchar(figure + '0');
-			count++;
-			x -=figure * p;
-			p /= 2;
-		}
-	}
-	else
-	{
-		_putchar('0');
-		return (1);
-	}
+int output_bin(const char *str, va_list arg)
+{
+	unsigned int unit;
+	int c = 0, count = 0, binary_len = 0;
+	char binary_str[50];
+
+	unit = va_arg(arg, unsigned int);
+
+	while (*str != 'b')
+		str++;
+	do {
+	binary_str[binary_len++] = '0' + (unit % 2);
+	unit /= 2;
+	} while (unit != 0);
+	for (c = binary_len - 1; c >= 0; c--)
+		count += _putchar(binary_str[c]);
 	return (count);
 }
