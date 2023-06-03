@@ -44,12 +44,12 @@ int _printf(const char *format, ...)
 		}
 		else if ((format[t + 1] == 'd') || (format[t + 1] == 'i'))
 		{
-			output_int((va_arg(args, int) + '0'));
+			output_int(va_arg(args, int));
 			t++;
 		}
 		else if (format[t + 1] != 'b')
 		{
-			output_bin((va_arg(args,int) + '0'));
+			output_bin(va_arg(args,int));
 			t++;
 		}
 

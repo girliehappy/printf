@@ -6,12 +6,11 @@ int output_int(int num)
 
 	if (num == 0)
 		return (0);
-	else
-	{
-		r = num/10;
-	}
+	
+	r = num / 10;
 	output_int(r);
-	putchar(num%10 + '0');
+	_putchar(num % 10 + '0');
 	count_lmt += 1;
+	
 	return(count_lmt);
 }
